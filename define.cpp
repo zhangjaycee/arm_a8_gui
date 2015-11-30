@@ -22,6 +22,7 @@ int y00[HANDNUM];
 int dx[HANDNUM];
 int dy[HANDNUM];
 int rgb_b[HANDNUM]={0},rgb_g[HANDNUM]={0},rgb_r[HANDNUM]={0};
+int mode = 0;
 
 int fpscount=1;
 

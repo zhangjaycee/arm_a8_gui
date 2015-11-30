@@ -43,43 +43,43 @@ DialogCt::DialogCt(QWidget *parent) :
         printf("init error\n");
     }
 
-    boxInit();
     v4l2_grab();
 }
 
 void DialogCt::grabAndShow(){
     yuv2Mat(buffers[0].start,imgWidth,imgHeight);
     //new frame grabed,process start
-
-    while(1){
-        if(first_flag){
-            cvtColor(frame, first_frame, CV_RGB2GRAY);
-            first_flag=0;
-        }
-        cvtColor(frame, current_gray, CV_RGB2GRAY);
-        absdiff(first_frame,current_gray,fore_frame);
-        if(!gotHand){
-            getHand();
-            if(gotHand){
-                ctInitFlag=1;
+    if(mode == 2){//ct mode
+        while(1){
+            if(first_flag){
+                cvtColor(frame, first_frame, CV_RGB2GRAY);
+                first_flag=0;
             }
+            cvtColor(frame, current_gray, CV_RGB2GRAY);
+            absdiff(first_frame,current_gray,fore_frame);
+            if(!gotHand){
+                getHand();
+                if(gotHand){
+                    ctInitFlag=1;
+                }
+                break;
+            }
+            // CT initialization
+            if(ctInitFlag){
+                for(int i=0;i<HANDNUM;i++)
+                    ct[i].init(fore_frame, box[i]);
+                ctInitFlag=0;
+            }
+            for(int i=0;i<HANDNUM;i++){
+                ct[i].processFrame(fore_frame, box[i]);
+                rectangle(frame, box[i], Scalar(rgb_b[i],rgb_g[i],rgb_r[i]));
+            }
+            flip(frame, frame, 1);
             break;
         }
-        // CT initialization
-        if(ctInitFlag){
-            for(int i=0;i<HANDNUM;i++)
-                ct[i].init(fore_frame, box[i]);
-            ctInitFlag=0;
-        }
-        for(int i=0;i<HANDNUM;i++){
-            ct[i].processFrame(fore_frame, box[i]);
-            rectangle(frame, box[i], Scalar(rgb_b[i],rgb_g[i],rgb_r[i]));
-        }
+    } else if (mode == 1){//only dispaly mode
         flip(frame, frame, 1);
-        break;
     }
-    //imshow("ok?",frame);
-    //waitKey();
 
     qImg=MatToQImage(frame);
     ui->label->setPixmap(QPixmap::fromImage(qImg));
@@ -103,6 +103,10 @@ void DialogCt::paintEvent(QPaintEvent *)
 
 void DialogCt::on_pushButton_clicked()
 {
-    start_flag = 1;
-    //grabAndShow();
+
+}
+
+void DialogCt::on_pushButton_2_clicked()
+{
+
 }

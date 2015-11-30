@@ -16,7 +16,6 @@
 #include <QtGui/QDialog>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
-#include <QtGui/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
@@ -24,19 +23,15 @@ class Ui_DialogCt
 {
 public:
     QLabel *label;
-    QPushButton *pushButton;
 
     void setupUi(QDialog *DialogCt)
     {
         if (DialogCt->objectName().isEmpty())
             DialogCt->setObjectName(QString::fromUtf8("DialogCt"));
-        DialogCt->resize(472, 363);
+        DialogCt->resize(449, 363);
         label = new QLabel(DialogCt);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(90, 80, 121, 81));
-        pushButton = new QPushButton(DialogCt);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(300, 80, 99, 27));
+        label->setGeometry(QRect(60, 50, 321, 241));
 
         retranslateUi(DialogCt);
 
@@ -46,8 +41,7 @@ public:
     void retranslateUi(QDialog *DialogCt)
     {
         DialogCt->setWindowTitle(QApplication::translate("DialogCt", "Dialog", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("DialogCt", "TextLabel", 0, QApplication::UnicodeUTF8));
-        pushButton->setText(QApplication::translate("DialogCt", "Start", 0, QApplication::UnicodeUTF8));
+        label->setText(QString());
     } // retranslateUi
 
 };

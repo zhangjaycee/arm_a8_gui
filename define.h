@@ -43,6 +43,7 @@ extern Mat fore_frame;
 extern Mat current_gray;
 extern CompressiveTracker ct[HANDNUM];
 
+extern int mode;
 
 /*
 INCLUDEPATH += /usr/local/include\

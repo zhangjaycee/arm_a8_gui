@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "dialogct.h"
 
+
 namespace Ui {
     class myDlg5;
 }
@@ -22,6 +23,7 @@ private:
 private slots:
    // void on_pushButton_clicked();
     void on_pushButton_2_clicked();
+    void on_pushButton_clicked();
 };
 
 #endif // MYDLG5_H
