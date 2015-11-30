@@ -42,8 +42,8 @@ DialogCt::DialogCt(QWidget *parent) :
     {
         printf("init error\n");
     }
-
     v4l2_grab();
+    grabAndShow();
 }
 
 void DialogCt::grabAndShow(){
@@ -96,17 +96,6 @@ void DialogCt::paintEvent(QPaintEvent *)
 {
     //printf("framecount:%d\n",fpscount++);
     ioctl(fd, VIDIOC_DQBUF, &buf);
-    if(start_flag)
-        grabAndShow();
+    grabAndShow();
     ioctl(fd, VIDIOC_QBUF, &buf);
-}
-
-void DialogCt::on_pushButton_clicked()
-{
-
-}
-
-void DialogCt::on_pushButton_2_clicked()
-{
-
 }

@@ -22,14 +22,11 @@ private:
 
     void grabAndShow();
     QImage qImg;
-
-    int start_flag = 2;
+    int start_flag;
 private slots:
   // void on_pushButton_start_clicked();
 
     void paintEvent(QPaintEvent *);
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
 };
 
 #endif // DIALOGCT_H

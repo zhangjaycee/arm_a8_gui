@@ -1,4 +1,4 @@
-#define VIDEO_DEVICE "/dev/video1"
+#define VIDEO_DEVICE "/dev/video4"
 #include<stdio.h>
 #include<string.h>
 #include<unistd.h>
